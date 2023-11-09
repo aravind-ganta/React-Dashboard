@@ -11,6 +11,11 @@ const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 //   const userId = useSelector((state) => state.global.userId);
 //   const { data } = useGetUserQuery(userId);
+  const account = {
+    name: 'Aravind',
+    email: 'aravindg@s2tech.com',
+    photoURL: '/assets/images/user.png'
+  };
 
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
@@ -22,7 +27,11 @@ const Layout = () => {
         setIsSidebarOpen={setIsSidebarOpen}
       />
       <Box flexGrow={1}>
-        <Navbar/>
+        <Navbar
+          user = {account}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
         <Outlet />
       </Box>
     </Box>
