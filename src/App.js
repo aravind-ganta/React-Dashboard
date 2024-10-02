@@ -1,31 +1,30 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
-import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
+import { BrowserRouter,Navigate, Route, Routes } from "react-router-dom";
 import { themeSettings } from "theme";
-import Layout from "scenes/layout";
 import Dashboard from "scenes/dashboard";
-import { useSelector } from "react-redux";
+import Customers from "scenes/customers";
+import Layout from "scenes/layout";
 
 function App() {
-  const mode = useSelector((state) => state.global.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const mode = 'dark'
+  const theme = useMemo(()=>createTheme(themeSettings(mode)), [mode])
   return (
     <div className="app">
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes>
-              <Route element={<Layout />}>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-
-              </Route>
-            </Routes>
+          <CssBaseline/>
+          <Routes>
+            <Route element={<Layout/>}>
+              <Route path="/" element={<Navigate to="/dashboard" replace/>}/>
+              <Route path="/dashboard" element={<Dashboard/>}/>
+              <Route path="/transactions" element={<Customers/>}/>
+            </Route>
+          </Routes>
         </ThemeProvider>
-      </BrowserRouter>
       
-
+      </BrowserRouter>
     </div>
   );
 }
